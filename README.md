@@ -3,7 +3,8 @@
 ## Logica aplicatiei:
 
 1. Selectare dată din calendar.
-2. Pe baza datei din calendar se afiseaza 3 noi butoane: - Insereaza eveniment
+2. Pe baza datei din calendar se afiseaza 2 noi butoane: - Insereaza eveniment
+
                                                          - Rosteste evenimente din zi
                                                          
 - Insereaza eveniment: 
