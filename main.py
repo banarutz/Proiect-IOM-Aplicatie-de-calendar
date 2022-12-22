@@ -23,9 +23,6 @@ def InsertEvent (): # Momentan insereaza un singur eveniment
     with open('EventData.csv', 'w') as file:
         writer = csv.writer(file, lineterminator= '\n')
         writer.writerow([data, event])
-        print('#################################################')
-        # writer.writerow(event)
-    print('@@@@@@@@@@@')
     RemoveTextBoxAndButton()
     # Functie care scoate text box-ul si anunta ca evenimentul a fost introdus cu succes!
 
