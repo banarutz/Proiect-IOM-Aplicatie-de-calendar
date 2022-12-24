@@ -13,6 +13,7 @@ root.geometry('600x400')
 cal = Calendar (root, selectmode = 'day', year = 2023, month = 1, day = 15)
 cal.pack()
 
+
 def InsertEvent (): # Momentan insereaza un singur eveniment 
     # global EventInfo, data
     data = cal.get_date()   
@@ -49,6 +50,12 @@ InsertEventButton = Button (root, text= 'Insereaza eveniment', command = ShowIns
 SpeechEventButton = Button (root, text= 'Rostește eveniment', command = speech_event).place (x = 350, y = 200)
 
 # myButton.pack(pady = 20)
+
+def grab_date ():
+    my_label.config (text = "Today's date is: " + cal.get_date())
+
+myButton = Button (root, text= 'Selectare data', command = grab_date)
+myButton.pack(pady = 20)
 
 my_label = Label (root, text='')
 my_label.pack (pady = 20)
