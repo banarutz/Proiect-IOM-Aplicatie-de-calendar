@@ -1,13 +1,14 @@
 # App core
-app_title = "IOM Project Calendar"
-app_icon = "app_icon.ico"
+APP_TITLE = "IOM Project Calendar"
+APP_ICON = "app_icon.ico"
 
 # App constants
-default_day = 15
-default_month = 1
-default_year = 2023
+DEFAULT_DAY = 15
+DEFAULT_MONTH = 1
+DEFAULT_YEAR = 2023
+EMPTY_STRING = ""
 
 # App labels
-insert_button_text = "Insereaza eveniment"
-speech_button_text = "Rostește eveniment"
-date_label_text = "Today's date is: "
+INSERT_BUTTON_TEXT = "Insereaza eveniment"
+SPEECH_BUTTON_TEXT = "Rostește eveniment"
+DATE_LABEL_TEXT = "Today's date is: "
