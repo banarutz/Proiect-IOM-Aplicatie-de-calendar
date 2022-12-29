@@ -11,4 +11,4 @@ EMPTY_STRING = ""
 # App labels
 INSERT_BUTTON_TEXT = "Insereaza eveniment"
 SPEECH_BUTTON_TEXT = "Rostește eveniment"
-DATE_LABEL_TEXT = "Today's date is: "
+SHOW_EVENTS_BUTTON_TEXT = "Afiseaza evenimente"
