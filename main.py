@@ -1,18 +1,16 @@
-from imports import *
 from constants import *
+from imports import *
 
 ######################################
 # Date is formatted as month/day/year#
 ######################################
 
-global EventData
-
 root = Tk()
-root.title(app_title)
-root.iconbitmap(app_icon)
+root.title(APP_TITLE)
+root.iconbitmap(APP_ICON)
 root.geometry('600x400')
 
-cal = Calendar(root, selectmode='day', year=default_year, month=default_month, day=default_day)
+cal = Calendar(root, selectmode='day', year=DEFAULT_YEAR, month=DEFAULT_MONTH, day=DEFAULT_DAY)
 cal.pack()
 
 
@@ -47,16 +45,40 @@ def RemoveTextBoxAndButton():
 
 
 def speech_event():
+    global EventData
+    EventData = GetAllScheduledEvents()
+    current_events = EMPTY_STRING
+    for event_date, text in EventData:
+        if event_date == cal.get_date():
+            current_events = current_events + text + ", "
+    ReadEventText(current_events)
     RemoveTextBoxAndButton()
-    pass
+
+
+def GetAllScheduledEvents():
+    schedule = []
+    with open('EventData.csv', 'r') as file:
+        scheduled_events = csv.reader(file)
+        for row in scheduled_events:
+            schedule.append((row[0], row[1]))
+    return schedule
+
+
+def ReadEventText(text):
+    try:
+        eventRead = gTTS(text, lang="en-US", slow=False)
+        eventRead.save("event.mp3")
+        playsound('event.mp3')
+    except:
+        my_label.config(text="Something went wrong")
 
 
 def grab_date():
-    my_label.config(text=date_label_text + cal.get_date())
+    my_label.config(text=DATE_LABEL_TEXT + cal.get_date())
 
 
-InsertEventButton = Button(root, text=insert_button_text, command=ShowInsertEventTextBox).place(x=125, y=200)
-SpeechEventButton = Button(root, text=speech_button_text, command=speech_event).place(x=350, y=200)
+InsertEventButton = Button(root, text=INSERT_BUTTON_TEXT, command=ShowInsertEventTextBox).place(x=125, y=200)
+SpeechEventButton = Button(root, text=SPEECH_BUTTON_TEXT, command=speech_event).place(x=350, y=200)
 
 myButton = Button(root, text='Selectare data', command=grab_date)
 myButton.pack(pady=20)
