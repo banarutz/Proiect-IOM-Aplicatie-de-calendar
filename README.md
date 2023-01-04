@@ -12,7 +12,7 @@
 
 - Insereaza eveniment: 
 Atat vocal cat si text. Afisam 2 butoane prin care selectam modalitatea de inserare a evenimentului.
-Se vor insera intr-un fisier (.csv, .txt, .fmm) intr-o linie si va fi o problema pentru atunci cum ne jucam cu datele.
+Se vor insera intr-un fisier (.csv, .txt) intr-o linie si va fi o problema pentru atunci cum ne jucam cu datele.
 
 - Rosteste eveniment:
 Cautam in CSV ziua respectiva, o aducem in piton si facem tits pe care il salvam + play cu tts.
