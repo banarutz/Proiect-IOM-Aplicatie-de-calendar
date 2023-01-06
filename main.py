@@ -65,26 +65,19 @@ def CheckNextDayEvents():
 
 def InsertEvent():  # Momentan insereaza un singur eveniment
     # global EventInfo, data
-    global insert_label, insert_label_1
+    global insert_label
     data = cal.get_date()
     event = InsertEventText.get(1.0, END)  # EVENTUL ARE UN \N DUPA EL, NU STIU DE CE? TREBUIE SCOS
-    insert_label_1 = Label(root, text='Introduceți un eveniment!')
-    if len(event) != 1:
-        # insert_label_1.place_forget()
-        formatted_event = event.rstrip(event[-1])
-        print(formatted_event)
-        InsertedData = [data, formatted_event]
-        print(InsertedData)
+    formatted_event = event.rstrip(event[-1])
+    InsertedData = [data, formatted_event]
+    print(InsertedData)
     # my_label.config (InsertedData)
-        with open('EventData.csv', 'a', encoding = 'utf16') as file:
-            writer = csv.writer(file, lineterminator='\n')
-            writer.writerow([data, formatted_event])
-        insert_label = Label(root, text='Eveniment introdus')
-        insert_label.place(x=235, y=280)
-    else:
+    with open('EventData.csv', 'a') as file:
+        writer = csv.writer(file, lineterminator='\n')
+        writer.writerow([data, formatted_event])
+    insert_label = Label(root, text='Eveniment introdus')
+    insert_label.place(x=235, y=280)
 
-        # insert_label_1.place(x=235, y=280)
-        print('S-a incercat introducerea unui eveniment gol!')
 
 def ShowInsertEventTextBox():
     global InsertIntoCSVButton, InsertEventLabel, data, InsertEventText
@@ -159,8 +152,9 @@ def show_events():
             index += 1
             numberOfEvent = str(index) + '.'
             EventsText.insert('end', numberOfEvent + text + '\n')
-    if index == 0:
-        EventsText.insert(END, 'Nu există evenimente pentru data selectată!')
+            
+    # if index == 0:
+    #     EventsText.insert(END, 'Nu există evenimente pentru data selectată!')
     EventsText.configure(state='disabled')
     EventsText.place(x=145, y=300)
 
@@ -198,10 +192,7 @@ def remove_parts():
         InsertPathButton.place_forget()
     except:
         print('InsertPathButton can\'t be deleted')
-    try: 
-        insert_label_1.place_forget()
-    except:
-        print('insert_label_empty_event can\'t be deleted')
+    
 
 InsertEventButton = Button(root, text=INSERT_BUTTON_TEXT, command= lambda: [ShowInsertEventTextBox(), ShowInsertVocalText()]).place(x=125, y=200)
 # InsertVocalEventButton = Button(root, text=INSERT_VOCAL_BUTTON_TEXT, command = ShowInsertVocalText).place(x=125, y = 500)
