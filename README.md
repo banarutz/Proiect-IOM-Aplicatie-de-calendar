@@ -12,10 +12,10 @@
 
 - Insereaza eveniment: 
 Atat vocal cat si text. Afisam 2 butoane prin care selectam modalitatea de inserare a evenimentului.
-Se vor insera intr-un fisier (.csv, .txt, .fmm) intr-o linie si va fi o problema pentru atunci cum ne jucam cu datele.
+Se vor insera intr-un fisier (.csv, .txt) intr-o linie si va fi o problema pentru atunci cum ne jucam cu datele.
 
 - Rosteste eveniment:
-Cautam in CSV ziua respectiva, o aducem in piton si facem tits pe care il salvam + play cu tts.
+Cautam in CSV ziua respectiva, o aducem in piton si facem tts pe care il salvam + play cu tts.
 
 - Alertare utilizator:
 Cand se apeleaza `get_date` facem un loop care trece prin tooot .csv-ul si in cazul in care gaseste urmatoarea zi => un mesaj in UI
