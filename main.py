@@ -10,9 +10,35 @@ root.title(APP_TITLE)
 root.iconbitmap(APP_ICON)
 root.geometry('600x600')
 root.resizable(False, False)
-
-cal = Calendar(root, selectmode='day', year=DEFAULT_YEAR, month=DEFAULT_MONTH, day=DEFAULT_DAY)
+date = datetime.now()
+cal = Calendar(root, selectmode='day', year=date.year, month=date.month, day=date.day)
 cal.pack()
+
+
+def NewWindow(date, text):
+    UpcomingEventsWindow = Toplevel()
+    UpcomingEventsWindow.grab_set()
+    UpcomingEventsWindow.title(NEXT_DAY_TITLE)
+    UpcomingEventsWindow.resizable(False, False)
+    UpcomingEventsWindow.geometry("350x350")
+    EventsText = Text(UpcomingEventsWindow, width=40, height=20)
+    EventsText.insert('end', "Evenimtentele din data de " + date + " sunt:\n")
+    EventsText.insert('end', text)
+    EventsText.configure(state='disabled')
+    EventsText.place(x=10, y=10)
+
+
+def CheckNextDayEvents():
+    Events = GetAllScheduledEvents()
+    tommorow = (date + timedelta(1)).strftime('%#m/%#d/%#y')
+    current_events = ""
+    index = 0
+    for event_date, text in Events:
+        if event_date == tommorow:
+            index += 1
+            current_events = current_events + str(index) + '.' + text + "\n"
+    if current_events != "":
+        NewWindow(tommorow, current_events)
 
 
 def InsertEvent():  # Momentan insereaza un singur eveniment
@@ -29,6 +55,7 @@ def InsertEvent():  # Momentan insereaza un singur eveniment
         writer.writerow([data, formatted_event])
     insert_label = Label(root, text='Eveniment introdus')
     insert_label.place(x=235, y=280)
+
 
 def ShowInsertEventTextBox():
     global InsertIntoCSVButton, InsertEventLabel, data, InsertEventText
@@ -52,13 +79,15 @@ def speech_event():
     ReadEventText(current_events)
 
 
-
 def GetAllScheduledEvents():
     schedule = []
-    with open('EventData.csv', 'r') as file:
-        scheduled_events = csv.reader(file)
-        for row in scheduled_events:
-            schedule.append((row[0], row[1]))
+    try:
+        with open('EventData.csv', 'r') as file:
+            scheduled_events = csv.reader(file)
+            for row in scheduled_events:
+                schedule.append((row[0], row[1]))
+    except:
+        print("No events yet!")
     return schedule
 
 
@@ -76,11 +105,13 @@ def ReadEventText(text):
         mixer.music.play()
     except:
         date_label.config(text="There are no events that day.")
+
+
 def show_events():
     global EventsText
     remove_parts()
     Events = GetAllScheduledEvents()
-    EventsText = Text(root, width=40, height = 50)
+    EventsText = Text(root, width=40, height=50)
     EventsText.insert('end', "Evenimtentele din data de " + cal.get_date() + " sunt:\n")
     index = 0
     for event_date, text in Events:
@@ -90,6 +121,7 @@ def show_events():
             EventsText.insert('end', numberOfEvent + text + '\n')
     EventsText.configure(state='disabled')
     EventsText.place(x=145, y=300)
+
 
 def remove_parts():
     try:
@@ -117,7 +149,9 @@ def remove_parts():
     except:
         print("insert_label can't be deleted")
 
+
 InsertEventButton = Button(root, text=INSERT_BUTTON_TEXT, command=ShowInsertEventTextBox).place(x=125, y=200)
 SpeechEventButton = Button(root, text=SPEECH_BUTTON_TEXT, command=speech_event).place(x=350, y=200)
 ShowEventsButton = Button(root, text=SHOW_EVENTS_BUTTON_TEXT, command=show_events).place(x=235, y=245)
+CheckNextDayEvents()
 root.mainloop()

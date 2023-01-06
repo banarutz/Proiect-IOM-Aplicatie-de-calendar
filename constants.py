@@ -3,9 +3,7 @@ APP_TITLE = "IOM Project Calendar"
 APP_ICON = "app_icon.ico"
 
 # App constants
-DEFAULT_DAY = 15
-DEFAULT_MONTH = 1
-DEFAULT_YEAR = 2023
+NEXT_DAY_TITLE = "Evenimentele din urmatoarea zi"
 EMPTY_STRING = ""
 
 # App labels
