@@ -4,11 +4,6 @@ from imports import *
 ######################################
 # Date is formatted as month/day/year#
 ######################################
-
-#################################################33
-##### EXCEPTIE EVENIMENT NUL !!!!!!!!! ########
-################################################
-
 root = Tk()
 root.title(APP_TITLE)
 root.iconbitmap(APP_ICON)
@@ -63,15 +58,13 @@ def CheckNextDayEvents():
         NewWindow(tommorow, current_events)
 
 
-def InsertEvent():  # Momentan insereaza un singur eveniment
-    # global EventInfo, data
+def InsertEvent(): 
     global insert_label
     data = cal.get_date()
-    event = InsertEventText.get(1.0, END)  # EVENTUL ARE UN \N DUPA EL, NU STIU DE CE? TREBUIE SCOS
+    event = InsertEventText.get(1.0, END)
     formatted_event = event.rstrip(event[-1])
     InsertedData = [data, formatted_event]
     print(InsertedData)
-    # my_label.config (InsertedData)
     with open('EventData.csv', 'a') as file:
         writer = csv.writer(file, lineterminator='\n')
         writer.writerow([data, formatted_event])
@@ -86,17 +79,14 @@ def ShowInsertEventTextBox():
     InsertEventLabel.place(x=125, y=300)
     InsertEventText = Text(root, height=5, width=45)
     InsertEventText.place(x=125, y=320)
-    InsertIntoCSVButton = Button(root, text='Introduceti textul', command=InsertEvent)
+    InsertIntoCSVButton = Button(root, text='Introduceți textul', command=InsertEvent)
     InsertIntoCSVButton.place(x=125, y=420)
 
 def ShowInsertVocalText():
     global InsertPathButton, InsertEventPath
-    # remove_parts()
-    # InsertVocalEventLabel = Label(root, text='Introduceți calea către inregistrarea evenimentului:')
-    # InsertVocalEventLabel.place(x=125, y=550)
     InsertEventPath = Text(root, height=3, width=25)
     InsertEventPath.place(x=125, y=510)
-    InsertPathButton = Button(root, text='Introduceti calea către eveniment', command=open_file)
+    InsertPathButton = Button(root, text='Introduceți calea către eveniment', command=open_file)
     InsertPathButton.place(x=125, y=475)
 
 
