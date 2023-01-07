@@ -1,4 +1,4 @@
-# IOM-the-advent-calendar
+# Proiect IOM - Aplicație de calendar
 
 ## Logica aplicatiei:
 
